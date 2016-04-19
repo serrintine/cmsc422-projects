@@ -25,7 +25,7 @@ class LossFunction:
         gradient of the loss associated with these predictions.
         """
 
-        util.raiseNotDefined()
+        return - sum((Y - Yhat) * X.T, axis=1)
 
 
 class SquaredLoss(LossFunction):
@@ -75,7 +75,7 @@ class LogisticLoss(LossFunction):
         """
 
         ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        return - sum((Y - Yhat) * X.T, axis=1)
 
 
 class HingeLoss(LossFunction):
@@ -90,7 +90,8 @@ class HingeLoss(LossFunction):
         """
 
         ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        loss = 1 - Y*Yhat # should this be: 1 - dot(Y, Yhat) ? 
+        return 0 if loss < 0 else loss
 
     def lossGradient(self, X, Y, Yhat):
         """
