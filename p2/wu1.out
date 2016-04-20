@@ -1,0 +1,335 @@
+Sauvignon-Blanc OAA
+
+citrus?
+-N-> lime?
+|    -N-> gooseberry?
+|    |    -N-> class 0	(356 for class 0, 10 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 4 for class 1)
+|    -Y-> or?
+|    |    -N-> class 1	(1 for class 0, 15 for class 1)
+|    |    -Y-> class 0	(2 for class 0, 0 for class 1)
+-Y-> grapefruit?
+|    -N-> flavors?
+|    |    -N-> class 1	(4 for class 0, 12 for class 1)
+|    |    -Y-> class 0	(11 for class 0, 5 for class 1)
+|    -Y-> stone?
+|    |    -N-> class 1	(0 for class 0, 14 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+
+--------------------------------------------------
+
+Sauvignon-Blanc AVA
+
+1 vs 0
+citrus?
+-N-> lime?
+|    -N-> melon?
+|    |    -N-> class 0	(187 for class 0, 9 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 5 for class 1)
+|    -Y-> class 1	(0 for class 0, 15 for class 1)
+-Y-> class 1	(0 for class 0, 31 for class 1)
+
+2 vs 0
+crisp?
+-N-> lime?
+|    -N-> lemon?
+|    |    -N-> class 0	(141 for class 0, 9 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 8 for class 1)
+|    -Y-> mild?
+|    |    -N-> class 1	(0 for class 0, 13 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+-Y-> red?
+|    -N-> class 1	(0 for class 0, 30 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+
+3 vs 0
+thai?
+-N-> very?
+|    -N-> friends?
+|    |    -N-> class 1	(4 for class 0, 56 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> ripe?
+|    |    -N-> class 1	(1 for class 0, 4 for class 1)
+|    |    -Y-> class 0	(4 for class 0, 0 for class 1)
+-Y-> class 0	(5 for class 0, 0 for class 1)
+
+4 vs 0
+apple?
+-N-> pasta?
+|    -N-> quite?
+|    |    -N-> class 1	(11 for class 0, 56 for class 1)
+|    |    -Y-> class 0	(3 for class 0, 0 for class 1)
+|    -Y-> class 0	(4 for class 0, 0 for class 1)
+-Y-> bright?
+|    -N-> class 0	(10 for class 0, 0 for class 1)
+|    -Y-> possesses?
+|    |    -N-> class 1	(0 for class 0, 4 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+
+--------------------------------------------------
+
+Pinot-Noir OAA
+
+cherry?
+-N-> raspberries?
+|    -N-> strawberry?
+|    |    -N-> class 0	(225 for class 0, 58 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 4 for class 1)
+|    -Y-> lingering?
+|    |    -N-> class 1	(0 for class 0, 12 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+-Y-> cassis?
+|    -N-> verdot?
+|    |    -N-> class 1	(36 for class 0, 68 for class 1)
+|    |    -Y-> class 0	(8 for class 0, 0 for class 1)
+|    -Y-> allspice?
+|    |    -N-> class 0	(21 for class 0, 0 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 2 for class 1)
+
+--------------------------------------------------
+
+Pinot-Noir AVA
+
+0 vs 2
+crisp?
+-N-> lime?
+|    -N-> lemon?
+|    |    -N-> class 0	(141 for class 0, 9 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 8 for class 1)
+|    -Y-> mild?
+|    |    -N-> class 1	(0 for class 0, 13 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+-Y-> red?
+|    -N-> class 1	(0 for class 0, 30 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+
+1 vs 2
+cassis?
+-N-> acidity?
+|    -N-> salmon?
+|    |    -N-> class 1	(92 for class 0, 129 for class 1)
+|    |    -Y-> class 0	(11 for class 0, 0 for class 1)
+|    -Y-> tannins?
+|    |    -N-> class 0	(22 for class 0, 0 for class 1)
+|    |    -Y-> class 0	(15 for class 0, 11 for class 1)
+-Y-> tea?
+|    -N-> 100?
+|    |    -N-> class 1	(1 for class 0, 47 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+
+3 vs 2
+crisp?
+-N-> peach?
+|    -N-> pear?
+|    |    -N-> class 1	(3 for class 0, 142 for class 1)
+|    |    -Y-> class 0	(2 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> red?
+|    -N-> class 0	(7 for class 0, 0 for class 1)
+|    -Y-> class 1	(0 for class 0, 2 for class 1)
+
+4 vs 2
+straw?
+-N-> crisp?
+|    -N-> particularly?
+|    |    -N-> class 1	(8 for class 0, 142 for class 1)
+|    |    -Y-> class 0	(2 for class 0, 0 for class 1)
+|    -Y-> red?
+|    |    -N-> class 0	(7 for class 0, 0 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 2 for class 1)
+-Y-> class 0	(12 for class 0, 0 for class 1)
+
+--------------------------------------------------
+
+OAA training time: 0.363000
+OAA accuracy: 0.370130
+
+--------------------------------------------------
+
+AVA training time: 0.359000
+AVA accuracy: 0.269017
+
+--------------------------------------------------
+
+Viognier OAA
+
+peaches?
+-N-> nectarine?
+|    -N-> chilled?
+|    |    -N-> class 0	(1036 for class 0, 1 for class 1)
+|    |    -Y-> class 0	(6 for class 0, 1 for class 1)
+|    -Y-> enjoy?
+|    |    -N-> class 0	(13 for class 0, 1 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 1 for class 1)
+-Y-> milk?
+|    -N-> straw?
+|    |    -N-> class 0	(14 for class 0, 0 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 1 for class 1)
+|    -Y-> class 1	(0 for class 0, 3 for class 1)
+
+--------------------------------------------------
+
+Viognier AVA
+
+17 vs 0
+floral?
+-N-> include?
+|    -N-> 5?
+|    |    -N-> class 1	(2 for class 0, 59 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(1 for class 0, 0 for class 1)
+-Y-> several?
+|    -N-> class 0	(4 for class 0, 0 for class 1)
+|    -Y-> class 1	(0 for class 0, 1 for class 1)
+
+17 vs 1
+peaches?
+-N-> peach?
+|    -N-> pear?
+|    |    -N-> class 1	(0 for class 0, 187 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 2
+peaches?
+-N-> peach?
+|    -N-> apple?
+|    |    -N-> class 1	(0 for class 0, 144 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 3
+peaches?
+-N-> nectarine?
+|    -N-> red?
+|    |    -N-> class 1	(1 for class 0, 15 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 4
+peaches?
+-N-> lovely?
+|    -N-> vanilla?
+|    |    -N-> class 1	(1 for class 0, 29 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 5
+milk?
+-N-> 5?
+|    -N-> northern?
+|    |    -N-> class 1	(3 for class 0, 147 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(1 for class 0, 0 for class 1)
+-Y-> class 0	(3 for class 0, 0 for class 1)
+
+17 vs 6
+peaches?
+-N-> apricot?
+|    -N-> honeydew?
+|    |    -N-> class 1	(1 for class 0, 61 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 7
+floral?
+-N-> peaches?
+|    -N-> nectarine?
+|    |    -N-> class 1	(1 for class 0, 57 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 8
+peach?
+-N-> peaches?
+|    -N-> pear?
+|    |    -N-> class 1	(0 for class 0, 47 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 9
+peach?
+-N-> peaches?
+|    -N-> tannin?
+|    |    -N-> class 1	(0 for class 0, 49 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 10
+fruits?
+-N-> peach?
+|    -N-> apple?
+|    |    -N-> class 1	(0 for class 0, 48 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 11
+fruits?
+-N-> peach?
+|    -N-> pear?
+|    |    -N-> class 1	(0 for class 0, 31 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 12
+freshness?
+-N-> accented?
+|    -N-> nuances?
+|    |    -N-> class 1	(2 for class 0, 35 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(2 for class 0, 0 for class 1)
+-Y-> class 0	(3 for class 0, 0 for class 1)
+
+17 vs 13
+peach?
+-N-> peaches?
+|    -N-> lovely?
+|    |    -N-> class 1	(0 for class 0, 45 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 14
+peaches?
+-N-> peach?
+|    -N-> pear?
+|    |    -N-> class 1	(0 for class 0, 35 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+17 vs 15
+freshness?
+-N-> apricot?
+|    -N-> lychee?
+|    |    -N-> class 1	(1 for class 0, 31 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> mix?
+|    |    -N-> class 0	(3 for class 0, 0 for class 1)
+|    |    -Y-> class 1	(0 for class 0, 1 for class 1)
+-Y-> class 0	(3 for class 0, 0 for class 1)
+
+17 vs 16
+peaches?
+-N-> peach?
+|    -N-> lovely?
+|    |    -N-> class 1	(0 for class 0, 16 for class 1)
+|    |    -Y-> class 0	(1 for class 0, 0 for class 1)
+|    -Y-> class 0	(3 for class 0, 0 for class 1)
+-Y-> class 0	(4 for class 0, 0 for class 1)
+
+--------------------------------------------------
+
+OAA accuracy using zero/one: 0.247681
+AVA accuracy using zero/one: 0.264378

@@ -21,7 +21,7 @@ class OAA:
     def predict(self, X, useZeroOne=False):
         vote = zeros((self.K,))
         for k in range(self.K):
-            probs = self.f[k].predict_proba(X)
+            probs = self.f[k].predict_proba(X.reshape(1, -1))
             if useZeroOne:
                 vote[k] += 1 if probs[0,1] > 0.5 else 0
             else:
@@ -61,7 +61,7 @@ class AVA:
         vote = zeros((self.K,))
         for i in range(self.K):
             for j in range(i):
-                probs = self.f[i][j].predict_proba(X)
+                probs = self.f[i][j].predict_proba(X.reshape(1, -1))
                 if useZeroOne:
                     p = 1 if probs[0,1] > 0.5 else 0
                     vote[j] += p
