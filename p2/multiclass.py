@@ -175,8 +175,15 @@ class MCTree:
             print 'training classifier for', leftLabels, 'versus', rightLabels
 
             # compute the training data, store in thisX, thisY
-            ### TODO: YOUR CODE HERE
-            util.raiseNotDefined()
+            thisX = []
+            thisY = []
+
+            for i in range(0, len(Y)):
+                thisX.append(X[i])
+                if Y[i] in leftLabels:
+                    thisY.append(1)
+                elif Y[i] in rightLabels:
+                    thisY.append(-1)
 
             try:
                 n.getNodeInfo().fit(thisX, thisY) # For sklearn implementations
@@ -196,4 +203,3 @@ class MCTree:
         
 def getMyTreeForWine():
     return makeBalancedTree(20)
-
