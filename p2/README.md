@@ -5,9 +5,9 @@ There are two parts to this project. The first is to play around with multiclass
 ## Files To Turn In
 
 ``multiclass.py``: This contains the multiclass reduction implementations.
-  
+
 ``gd.py``: This contains the gradient descent implementation.
-  
+
 ``linear.py``: This contains the linear classifier implementation.
 
 ``partners.txt``: Lists the names of all members in your team.
@@ -20,7 +20,7 @@ There are two parts to this project. The first is to play around with multiclass
 
 In this section, you will explore the differences between three
 multiclass-to-binary reductions: one-against-all (OAA), all-versus-all
-(AVA) and a tree-based reduction (TREE). We are evaluating on a text 
+(AVA) and a tree-based reduction (TREE). We are evaluating on a text
 classification task:  wine classification (sorry
 if you're not a wine snob and this doesn't mean much to you). Your job is, given the
 description of the wine, predict the type of wine.  There are two
@@ -33,20 +33,20 @@ the file wines.names.
 To start out, be sure to import everything:
 
 ```python
->>> from sklearn.tree import DecisionTreeClassifier
->>> import multiclass
->>> import util
->>> from datasets import *
+from sklearn.tree import DecisionTreeClassifier
+import multiclass
+import util
+from datasets import *
 ```
 
 To get you started, here's how we can train decision "stumps" (aka
 depth=1 decision trees) on the large data set:
 
 ```python
->>> h = multiclass.OAA(20, lambda: DecisionTreeClassifier(max_depth=1))
->>> h.train(WineData.X, WineData.Y)
->>> P = h.predictAll(WineData.Xte)
->>> mean(P == WineData.Yte)
+h = multiclass.OAA(20, lambda: DecisionTreeClassifier(max_depth=1))
+h.train(WineData.X, WineData.Y)
+P = h.predictAll(WineData.Xte)
+mean(P == WineData.Yte)
 0.29499072356215211
 ```
 
@@ -55,9 +55,9 @@ slightly different value for accuracy due to randomization in the
 SKLearn classifier implementations.) The most frequent class is:
 
 ```python
->>> mode(WineData.Y)
+mode(WineData.Y)
 1
->>> WineData.labels[1]
+WineData.labels[1]
 'Cabernet-Sauvignon'
 ```
 
@@ -65,7 +65,7 @@ And if you were to always predict label 1, you would get the following
 accuracy:
 
 ```python
->>> mean(WineData.Yte == 1)
+mean(WineData.Yte == 1)
 0.17254174397031541
 ```
 
@@ -76,8 +76,8 @@ The default implementation of OAA uses decision tree confidence
 zero/one predictions to see the effect:
 
 ```python
->>> P = h.predictAll(WineData.Xte, useZeroOne=True)
->>> mean(P == WineData.Yte)
+P = h.predictAll(WineData.Xte, useZeroOne=True)
+mean(P == WineData.Yte)
 0.19109461966604824
 ```
 
@@ -87,12 +87,12 @@ Switching to the smaller data set for a minute, we can train, say,
 depth 3 decision trees:
 
 ```python
->>> h = multiclass.OAA(5, lambda: DecisionTreeClassifier(max_depth=3))
->>> h.train(WineDataSmall.X, WineDataSmall.Y)
->>> P = h.predictAll(WineDataSmall.Xte)
->>> mean(P == WineDataSmall.Yte)
+h = multiclass.OAA(5, lambda: DecisionTreeClassifier(max_depth=3))
+h.train(WineDataSmall.X, WineDataSmall.Y)
+P = h.predictAll(WineDataSmall.Xte)
+mean(P == WineDataSmall.Yte)
 0.60393873085339167
->>> mean(WineDataSmall.Yte == 1)
+mean(WineDataSmall.Yte == 1)
 0.40700218818380746
 ```
 
@@ -103,9 +103,9 @@ not great.
 We can look at what this classifier is doing.
 
 ```python
->>> WineDataSmall.labels[0]
+WineDataSmall.labels[0]
 'Sauvignon-Blanc'
->>> util.showTree(h.f[0], WineDataSmall.words)
+util.showTree(h.f[0], WineDataSmall.words)
 ```
 
 This should show the tree that's associated with predicting label 0
@@ -132,16 +132,16 @@ Now, you must implement a tree-based reduction. Most of train is given to you, b
 must do all on your own. A tree class is provided to help you:
 
 ```python
->>> t = multiclass.makeBalancedTree(range(6))
->>> t
+t = multiclass.makeBalancedTree(range(6))
+t
 [[0 [1 2]] [3 [4 5]]]
->>> t.isLeaf
+t.isLeaf
 False
->>> t.getLeft()
+t.getLeft()
 [0 [1 2]]
->>> t.getLeft().getLeft()
+t.getLeft().getLeft()
 0
->>> t.getLeft().getLeft().isLeaf
+t.getLeft().getLeft().isLeaf
 True
 ```
 
@@ -165,8 +165,8 @@ Once you have an implementation running, we can check it on a simple
 example of minimizing the function `x^2`:
 
 ```python
->>> import gd
->>> gd.gd(lambda x: x**2, lambda x: 2*x, 10, 10, 0.2)
+import gd
+gd.gd(lambda x: x**2, lambda x: 2*x, 10, 10, 0.2)
 (1.0034641051795872, array([ 100.        ,   36.        ,   18.5153247 ,   10.95094653,
           7.00860578,    4.72540613,    3.30810578,    2.38344246,
           1.75697198,    1.31968118,    1.00694021]))
@@ -180,11 +180,11 @@ error somewhere!
 We can let it run longer and plot the trajectory:
 
 ```python
->>> x, trajectory = gd.gd(lambda x: x**2, lambda x: 2*x, 10, 100, 0.2)
->>> x
+x, trajectory = gd.gd(lambda x: x**2, lambda x: 2*x, 10, 100, 0.2)
+x
 0.003645900464603937
->>> plot(trajectory)
->>> show(False)
+plot(trajectory)
+show(False)
 ```
 
 It's now found a value close to zero and you can see that the
@@ -206,10 +206,10 @@ If you implemented it well, this should work in multiple dimensions,
 too:
 
 ```python
->>> x, trajectory = gd.gd(lambda x: linalg.norm(x)**2, lambda x: 2*x, array([10,5]), 100, 0.2)
->>> x
+x, trajectory = gd.gd(lambda x: linalg.norm(x)**2, lambda x: 2*x, array([10,5]), 100, 0.2)
+x
 array([ 0.0036459 ,  0.00182295])
->>> plot(trajectory)
+plot(trajectory)
 ```
 
 ### Linear Classifiers
@@ -244,14 +244,14 @@ have them.  (You'll have to import `mlGraphics` to make this
 work.)
 
 ```python
->>> import linear
->>> f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5})
->>> runClassifier.trainTestSet(f, datasets.TwoDAxisAligned)
+import linear
+f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 0, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(f, datasets.TwoDAxisAligned)
 Training accuracy 0.91, test accuracy 0.86
->>> f
+f
 w=array([ 2.73466371, -0.29563932])
->>> mlGraphics.plotLinearClassifier(f, datasets.TwoDAxisAligned.X, datasets.TwoDAxisAligned.Y)
->>> show(False)
+mlGraphics.plotLinearClassifier(f, datasets.TwoDAxisAligned.X, datasets.TwoDAxisAligned.Y)
+show(False)
 ```
 
 Note that even though this data is clearly linearly separable,
@@ -261,10 +261,10 @@ If we change the regularizer, we'll get a slightly different
 solution:
 
 ```python
->>> f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5})
->>> runClassifier.trainTestSet(f, datasets.TwoDAxisAligned)
+f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(f, datasets.TwoDAxisAligned)
 Training accuracy 0.9, test accuracy 0.86
->>> f
+f
 w=array([ 1.30221546, -0.06764756])
 ```
 
@@ -274,16 +274,16 @@ Now, we can try different loss functions.  Implement logistic loss and
 hinge loss.  Here are some simple test cases:
 
 ```python
->>> f = linear.LinearClassifier({'lossFunction': linear.LogisticLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5})
->>> runClassifier.trainTestSet(f, datasets.TwoDDiagonal)
+f = linear.LinearClassifier({'lossFunction': linear.LogisticLoss(), 'lambda': 10, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(f, datasets.TwoDDiagonal)
 Training accuracy 0.99, test accuracy 0.86
->>> f
+f
 w=array([ 0.29809083,  1.01287561])
 
->>> f = linear.LinearClassifier({'lossFunction': linear.HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
->>> runClassifier.trainTestSet(f, datasets.TwoDDiagonal)
+f = linear.LinearClassifier({'lossFunction': linear.HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(f, datasets.TwoDDiagonal)
 Training accuracy 0.98, test accuracy 0.86
->>> f
+f
 w=array([ 1.17110065,  4.67288657])
 ```
 
@@ -295,5 +295,3 @@ the *words* corresponding to the weights with the greatest
 positive value and those with the greatest negative value.
 Hint: look at WineDataBinary.words to get the id-to-word
 mapping. List the top 5 positive and top 5 negative and explain.
-
-
