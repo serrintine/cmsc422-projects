@@ -179,10 +179,11 @@ class MCTree:
             thisY = []
 
             for i in range(0, len(Y)):
-                thisX.append(X[i])
                 if Y[i] in leftLabels:
+                    thisX.append(X[i])
                     thisY.append(1)
-                elif Y[i] in rightLabels:
+                if Y[i] in rightLabels:
+                    thisX.append(X[i])
                     thisY.append(-1)
 
             try:
@@ -191,8 +192,14 @@ class MCTree:
                 n.getNodeInfo().train(thisX, thisY) # For implementations of binary.py
 
     def predict(self, X):
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        node = self.tree
+        while not node.isLeaf:
+            probs = node.getNodeInfo().predict_proba(X.reshape(1, -1)) 
+            if probs[0, 1] > 0.5:
+                node = node.getLeft()
+            else:
+                node = node.getRight()
+        return node.getLabel()
 
     def predictAll(self, X):
         N,D = X.shape
