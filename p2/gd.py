@@ -32,7 +32,7 @@ def gd(func, grad, x0, numIter, stepSize):
         eta = stepSize/sqrt(iter+1)
 
         # step in the direction of the gradient
-        x = eta*g
+        x = x - eta*g
 
         # record the trajectory
         trajectory[iter+1] = func(x)
