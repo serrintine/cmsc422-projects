@@ -25,8 +25,7 @@ class LossFunction:
         gradient of the loss associated with these predictions.
         """
 
-        return - sum((Y - Yhat) * X.T, axis=1)
-
+        util.raiseNotDefined()
 
 class SquaredLoss(LossFunction):
     """
@@ -39,8 +38,7 @@ class SquaredLoss(LossFunction):
         in Yhat; compute the loss associated with these predictions.
         """
 
-        return 0.5 * dot(Y - Yhat, Y - Yhat)
-
+        return (1/2) * dot(Y-Yhat, Y-Yhat)
 
     def lossGradient(self, X, Y, Yhat):
         """
@@ -49,8 +47,7 @@ class SquaredLoss(LossFunction):
         gradient of the loss associated with these predictions.
         """
 
-        return - sum((Y - Yhat) * X.T, axis=1)
-
+        return -sum((Y-Yhat) * X.T, axis=1)
 
 class LogisticLoss(LossFunction):
     """
@@ -63,9 +60,7 @@ class LogisticLoss(LossFunction):
         in Yhat; compute the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
-
+        return sum(log(1 + exp(multiply(-Y, Yhat))))
 
     def lossGradient(self, X, Y, Yhat):
         """
@@ -74,9 +69,9 @@ class LogisticLoss(LossFunction):
         gradient of the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        return - sum((Y - Yhat) * X.T, axis=1)
-
+        top = Y * exp(multiply(-Y, Yhat))
+        bottom = (1 + exp(multiply(-Y, Yhat)))
+        return -sum(top/bottom*X.T, axis=1)
 
 class HingeLoss(LossFunction):
     """
@@ -89,9 +84,12 @@ class HingeLoss(LossFunction):
         in Yhat; compute the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        loss = 1 - Y*Yhat # should this be: 1 - dot(Y, Yhat) ? 
-        return 0 if loss < 0 else loss
+        loss = 1 - multiply(Y, Yhat)
+        for i in range(0, len(Y)):
+            if loss[i] < 0:
+                loss[i] = 0
+                
+        return sum(loss)
 
     def lossGradient(self, X, Y, Yhat):
         """
@@ -100,8 +98,14 @@ class HingeLoss(LossFunction):
         gradient of the loss associated with these predictions.
         """
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        Z = []   
+        for i in range(0, len(Y)):
+            if (Y[i]*Yhat[i] <= 1):
+                Z.append(-Y[i])
+            else:
+                Z.append(0)
+
+        return sum(Z * X.T, axis=1)
 
 
 class LinearClassifier(BinaryClassifier):
@@ -163,6 +167,8 @@ class LinearClassifier(BinaryClassifier):
         Train a linear model using gradient descent, based on code in
         module gd.
         """
+        if (self.weights == 0) :
+            self.weights = zeros(X.shape[1])
 
         # get the relevant options
         lossFn   = self.opts['lossFunction']         # loss function to optimize
@@ -173,9 +179,11 @@ class LinearClassifier(BinaryClassifier):
         # define our objective function based on loss, lambd and (X,Y)
         def func(w):
             # should compute obj = loss(w) + (lambd/2) * norm(w)^2
-            Yhat = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            Yhat = []
+            for i in range(0, len(Y)):
+                Yhat.append(dot(w, X[i,:]))
 
-            obj  = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            obj = lossFn.loss(Y, Yhat) + (lambd/2) * norm(w)**2
 
             # return the objective
             return obj
@@ -183,9 +191,11 @@ class LinearClassifier(BinaryClassifier):
         # define our gradient function based on loss, lambd and (X,Y)
         def grad(w):
             # should compute gr = grad(w) + lambd * w
-            Yhat = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            Yhat = []
+            for i in range(0, len(Y)):
+                Yhat.append(dot(w, X[i,:]))
 
-            gr   = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
+            gr = lossFn.lossGradient(X, Y, Yhat) + lambd*w
 
             return gr
 
