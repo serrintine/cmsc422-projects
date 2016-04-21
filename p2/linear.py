@@ -38,7 +38,7 @@ class SquaredLoss(LossFunction):
         in Yhat; compute the loss associated with these predictions.
         """
 
-        return (1/2) * dot(Y-Yhat, Y-Yhat)
+        return 0.5 * dot(Y-Yhat, Y-Yhat)
 
     def lossGradient(self, X, Y, Yhat):
         """
@@ -88,7 +88,7 @@ class HingeLoss(LossFunction):
         for i in range(0, len(Y)):
             if loss[i] < 0:
                 loss[i] = 0
-                
+
         return sum(loss)
 
     def lossGradient(self, X, Y, Yhat):
@@ -183,7 +183,7 @@ class LinearClassifier(BinaryClassifier):
             for i in range(0, len(Y)):
                 Yhat.append(dot(w, X[i,:]))
 
-            obj = lossFn.loss(Y, Yhat) + (lambd/2) * norm(w)**2
+            obj = lossFn.loss(Y, Yhat) + (lambd*0.5) * norm(w)**2
 
             # return the objective
             return obj
