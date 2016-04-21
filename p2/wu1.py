@@ -2,7 +2,11 @@ from sklearn.tree import DecisionTreeClassifier
 import multiclass
 import util
 import time
-from datasets import *
+import datasets
+
+# ---------------------
+# WU1 OAA AND AVA TESTS
+# ---------------------
 
 # ------
 # PART A

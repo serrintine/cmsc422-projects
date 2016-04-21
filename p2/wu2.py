@@ -1,7 +1,11 @@
 from sklearn.tree import DecisionTreeClassifier
 import multiclass
 import util
-from datasets import *
+import datasets
+
+# ---------------------------------
+# WU2 TEST ACCURACY ON FULL DATASET
+#----------------------------------
 
 t = multiclass.makeBalancedTree(range(20))
 h = multiclass.MCTree(t, lambda: DecisionTreeClassifier(max_depth=3))

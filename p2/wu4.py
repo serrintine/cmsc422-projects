@@ -29,3 +29,11 @@ xlabel('Iteration Number')
 ylabel('Approximated Value')
 suptitle('Local Min of f(x) = sin(3*x) + x^2')
 show(True)
+
+x = linspace(-5, 5, 100)
+y = sin(3*x) + x**2
+plot(x, y)
+plot(-0.4273, -0.7760, 'ro')
+plot(1.2446, 0.9908, 'ro')
+suptitle('Local and global mins of f(x) = sin(3*x) + x^2')
+show(True)

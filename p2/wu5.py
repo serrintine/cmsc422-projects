@@ -1,13 +1,10 @@
 import runClassifier
-import mlGraphics
 import datasets
 import linear
 
-from numpy import *
-from pylab import *
-
-import util
-import imports
+# ----------------------
+# WU5 FIND TOP 5 weights
+# ----------------------
 
 print "SquaredLoss"
 s = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
