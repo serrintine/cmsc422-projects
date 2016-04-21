@@ -10,24 +10,26 @@ import util
 import imports
 
 print "SquaredLoss"
-f = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
-runClassifier.trainTestSet(f, datasets.WineDataBinary)
-print f
+s = linear.LinearClassifier({'lossFunction': linear.SquaredLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(s, datasets.WineDataBinary)
 
 print "\n----------------------------------------------------\n"
 print "LogisticLoss"
-f = linear.LinearClassifier({'lossFunction': linear.LogisticLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
-runClassifier.trainTestSet(f, datasets.WineDataBinary)
-print f
+l = linear.LinearClassifier({'lossFunction': linear.LogisticLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(l, datasets.WineDataBinary)
 
 print "\n----------------------------------------------------\n"
 print "HingeLoss"
-f = linear.LinearClassifier({'lossFunction': linear.HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
-runClassifier.trainTestSet(f, datasets.WineDataBinary)
-print f
+h = linear.LinearClassifier({'lossFunction': linear.HingeLoss(), 'lambda': 1, 'numIter': 100, 'stepSize': 0.5})
+runClassifier.trainTestSet(h, datasets.WineDataBinary)
 
 print "\n----------------------------------------------------\n"
-print "Word ID"
+print "HingeLoss weights + words"
 words = datasets.WineDataBinary().words
-for i in range(0, len(words)):
-	print str(i) + words[i]
+wt, wd = (list(x) for x in zip(*sorted(zip(l.getRepresentation(), words))))
+print "\nTop 5 negative weights + words"
+print wt[:5]
+print wd[:5]
+print "\nTop 5 positive weights + words"
+print wt[-5:]
+print wd[-5:]
