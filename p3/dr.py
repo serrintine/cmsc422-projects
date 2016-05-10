@@ -37,10 +37,12 @@ def pca(X, K):
             
     cov = np.cov(X.T)
     evals, evecs = eig(cov)
-    eorder = argsort(real(evals))[::-1][:K]
+    evals = real(evals)
+    evecs = real(evecs)
+    eorder = argsort(evals)[::-1][:K]
 
-    evals = real(evals[eorder])
-    Z = real(evecs[:, eorder])
+    evals = evals[eorder]
+    Z = evecs[:, eorder]
     P = dot(X, Z)
 
     return (P, Z, evals)
