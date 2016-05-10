@@ -35,8 +35,8 @@ def pca(X, K):
     #    hint 2: you'll want to get rid of the imaginary portion of the eigenvalues; use: real(evals), real(evecs)
     #    hint 3: be sure to sort the eigen(vectors,values) by the eigenvalues: see 'argsort', and be sure to sort in the right direction!
             
-    Dcov =  dot(X.T, X) / N
-    evals, evecs = eig(Dcov)
+    cov = np.cov(X.T)
+    evals, evecs = eig(cov)
     eorder = argsort(real(evals))[::-1][:K]
 
     evals = real(evals[eorder])
